@@ -1,42 +1,59 @@
-html, body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
+body {
+  font-family: "Arial", sans-serif;
+}
+
+#heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.outerWrapper{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-#head {
-    height: 15%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-#heading {
-    font-size: 3rem;
+#drop-zone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  max-width: 100%;
+  height: 200px;
+  padding: 1em;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  color: slategray;
+  cursor: pointer;
 }
 
-#body {
-    height: 85%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#file-input {
+  display: none;
 }
-#dropzone {
-    width: 25%;
-    height: 35%;
-    border-radius: 5px;
-    background-color: rgb(68, 99, 139);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+#preview {
+  width: 500px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  list-style: none;
+  padding: 0;
 }
-#dropzone:hover {
-    background-color: rgb(56, 81, 112);
-    cursor: pointer;
+
+#preview li {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin: 0;
+  width: 100%;
+  height: 100px;
 }
-#dropImagesText {
-    font-size: 2.5rem;
-    color: white;
+
+#preview img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
 }
