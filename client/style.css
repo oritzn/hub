@@ -1,59 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-  font-family: "Arial", sans-serif;
+    background-color: #f5f5f5;
+    font-family: 'Segoe UI', sans-serif;
+    color: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px 20px;
+    gap: 24px;
+}
+
+.outerWrapper {
+    width: 100%;
+    max-width: 520px;
+}
+
+#head {
+    text-align: center;
 }
 
 #heading {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    font-size: 3rem;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    color: #111;
 }
 
-.outerWrapper{
+#body {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    gap: 16px;
 }
 
 #drop-zone {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 500px;
-  max-width: 100%;
-  height: 200px;
-  padding: 1em;
-  border: 1px solid #cccccc;
-  border-radius: 4px;
-  color: slategray;
-  cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #ccc;
+    border-radius: 12px;
+    padding: 40px;
+    cursor: pointer;
+    background: #fff;
+    transition: border-color 0.2s, background 0.2s;
+    color: #888;
+    font-size: 0.9rem;
+    margin: 1rem 0;
 }
 
-#file-input {
-  display: none;
+#drop-zone::before {
+    content: "Bild auswählen";
+}
+
+#drop-zone:hover {
+    border-color: #888;
+    background: #fafafa;
+}
+
+#fileInput {
+    display: none;
 }
 
 #preview {
-  width: 500px;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5em;
-  list-style: none;
-  padding: 0;
+  margin-top: 5rem;
+    width: 100%;
+    min-height: 200px;
+    border-radius: 12px;
+    background-color: #e9e9e9;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: none;
 }
 
-#preview li {
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
-  margin: 0;
-  width: 100%;
-  height: 100px;
+#preview.visible {
+    display: block;
 }
 
-#preview img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
+#clear-btn {
+    padding: 12px;
+    background-color: #1a1a1a;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#clear-btn:hover {
+    background-color: #333;
 }

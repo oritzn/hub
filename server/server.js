@@ -1,7 +1,15 @@
 const express = require("express");
+const path = require("path");
+const app = express();
 
-const server = express();
+app.use(express.json());
 
-server.listen(5000, () => {
-  console.log("Server läuft auf Port 5000");
+// Frontend an client ausliefern
+app.use(express.static(path.join(__dirname, "../client")));
+
+app.post("/image/upload", (req, res) => {
+    console.log(req.body);
+    res.json({ success: true });
 });
+
+app.listen(3000, () => console.log("Server läuft auf Port 3000"));
