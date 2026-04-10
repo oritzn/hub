@@ -19,9 +19,9 @@ const storage = multer.diskStorage({
 const upload = multer({storage});
 
 
-app.post("/image/upload", upload.single("bild"), (req, res) => {
-    console.log(req.file);  //Bild ist hier drin
-    res.json({ success: true });
+app.post("/image/upload", upload.array("bilder"), (req, res) => {
+    console.log(req.files);  //Bilder sind hier drin
+    res.json({ success: true, count: req.files.length });
 });
 
 

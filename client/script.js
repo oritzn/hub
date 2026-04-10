@@ -1,32 +1,60 @@
 const imageInput = document.querySelector('#fileInput');
-let uploadedImage = "";
-let uploadedFile = null;
+const dropZone = document.querySelector('#drop-zone');
+const preview = document.querySelector('#preview');
+let uploadedFiles = [];
+
+
+// Drag & Drop
+dropZone.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    dropZone.classList.add("drag-over");
+});
+
+dropZone.addEventListener("dragleave", () => {
+    dropZone.classList.remove("drag-over");
+});
+
+dropZone.addEventListener("drop", (e) => {
+    e.preventDefault();
+    dropZone.classList.remove("drag-over");
+    const files = Array.from(e.dataTransfer.files).filter(f => f.type.startsWith("image/"));
+    if (files.length > 0) handleFiles(files);
+});
+
+
+function handleFiles(files) {
+    uploadedFiles = Array.from(files);
+    preview.innerHTML = "";
+
+    uploadedFiles.forEach(file => {
+        const reader = new FileReader();
+        reader.addEventListener("load", () => {
+            const img = document.createElement("img");
+            img.src = reader.result;
+            preview.appendChild(img);
+        });
+        reader.readAsDataURL(file);
+    });
+
+    preview.classList.add("visible");
+}
 
 imageInput.addEventListener("change", function() {
-    uploadedFile = this.files[0];
-
-    const reader = new FileReader();
-    reader.addEventListener("load", () => {
-        uploadedImage = reader.result;
-        const preview = document.querySelector("#preview");
-        preview.style.backgroundImage = `url(${uploadedImage})`;
-        preview.classList.add("visible");
-    });
-    reader.readAsDataURL(this.files[0]);
-})
+    handleFiles(this.files);
+});
 
 
-// script.js
 function sendData() {
-    if(!uploadedFile) {
+    if (uploadedFiles.length === 0) {
         console.log("Kein Bild ausgewählt!");
         return;
     }
 
     const formData = new FormData();
-    formData.append("bild", uploadedFile);
+    uploadedFiles.forEach(file => {
+        formData.append("bilder", file);
+    });
 
-    //Sendet Daten an server
     fetch("/image/upload", {
         method: "POST",
         body: formData
