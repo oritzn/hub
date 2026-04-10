@@ -1,7 +1,10 @@
 const imageInput = document.querySelector('#fileInput');
-let uploadedImage = ""
+let uploadedImage = "";
+let uploadedFile = null;
 
 imageInput.addEventListener("change", function() {
+    uploadedFile = this.files[0];
+
     const reader = new FileReader();
     reader.addEventListener("load", () => {
         uploadedImage = reader.result;
@@ -15,8 +18,13 @@ imageInput.addEventListener("change", function() {
 
 // script.js
 function sendData() {
+    if(!uploadedFile) {
+        console.log("Kein Bild ausgewählt!");
+        return;
+    }
+
     const formData = new FormData();
-    formData.append("bild", uploadedImage);
+    formData.append("bild", uploadedFile);
 
     //Sendet Daten an server
     fetch("/image/upload", {
