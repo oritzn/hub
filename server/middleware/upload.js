@@ -1,11 +1,10 @@
-const upload = multer({storage});
+const multer = require("multer");
 
-//Speicherort festlegen
 const storage = multer.diskStorage({
-    destination: "../../images/",
+    destination: "../images/",
     filename: (req, file, cb) => {
         cb(null, file.originalname);
     }
 });
 
-module.exports = multer({storage});
+module.exports = multer({ storage });

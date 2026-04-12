@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datei Ablage</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <script src="js/script.js" defer></script>
+
+    <div id="wrapper">
+        <div id="head" class="outerWrapper">
+            <h1 id="heading">Datei Ablage</h1>
+        </div>
+
+        <div id="body" class="outerWrapper">
+            <label id="drop-zone">
+                <input type="file" id="fileInput" accept="image/*" multiple>
+                <span id="drop-label">Bilder auswählen oder hierher ziehen</span>
+            </label>
+            <div id="preview"></div>
+            <button id="clear-btn" onclick="sendData()">Send</button>
+        </div>
+    </div>
+
+</body>
+</html>
