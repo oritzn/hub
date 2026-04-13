@@ -6,7 +6,7 @@ router.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "../../client/index.html"));
 });
 
-router.get("/imageUpload", (req, res) => {
+router.get("/upload", (req, res) => {
     res.sendFile(path.join(__dirname, "../../client/imageUpload.html"));
 });
 
