@@ -1,19 +1,21 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
 body {
-    background-color: #f5f5f5;
-    font-family: 'Segoe UI', sans-serif;
-    color: #1a1a1a;
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 100vh;
-    padding: 40px 20px;
-    gap: 24px;
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    background-color: #f5f5f5;
+}
+
+#wrapper {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 .outerWrapper {
@@ -36,9 +38,11 @@ body {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    height: 40%;
 }
 
 #drop-zone {
+    height: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -51,12 +55,10 @@ body {
     color: #888;
     font-size: 0.9rem;
 }
-
 #drop-zone.drag-over {
     border-color: #555;
     background: #f0f0f0;
 }
-
 #drop-zone:hover {
     border-color: #888;
     background: #fafafa;
@@ -84,7 +86,17 @@ body {
     border: 1px solid #ddd;
 }
 
-#clear-btn {
+
+#buttonWrapper {
+    margin-top: 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+#buttonWrapper > button {
+    width: 45%;
     padding: 12px;
     background-color: #1a1a1a;
     color: #fff;
@@ -95,6 +107,6 @@ body {
     transition: background 0.2s;
 }
 
-#clear-btn:hover {
+#buttonWrapper > button:hover {
     background-color: #333;
 }
