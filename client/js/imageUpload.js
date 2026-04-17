@@ -29,13 +29,15 @@ function handleFiles(files) {
     uploadedFiles.forEach(file => {
         const reader = new FileReader();
         reader.addEventListener("load", () => {
+            //Image preview wird hinzugefügt
             const img = document.createElement("img");
+            img.className = "previeImage";
             img.src = reader.result;
             preview.appendChild(img);
         });
         reader.readAsDataURL(file);
     });
-
+    
     preview.classList.add("visible");
 }
 
@@ -65,5 +67,10 @@ function sendData() {
 
 
 function clearPreview() {
-    preview.replaceChildren();
+    preview.innerHTML = "";
+    uploadedFiles = "";
+}
+
+function removeImgFromUploadedFiles(img) {
+    //Bei remove aus preview wird das entsprechence bild aus dem uploadedFiles entfernt
 }
