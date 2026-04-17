@@ -28,16 +28,18 @@ function handleFiles(files) {
 
     uploadedFiles.forEach(file => {
         const reader = new FileReader();
+        
         reader.addEventListener("load", () => {
-            //Image preview wird hinzugefügt
-            const img = document.createElement("img");
-            img.className = "previeImage";
-            img.src = reader.result;
-            preview.appendChild(img);
+            preview.innerHTML += `<div class="imagePreviewWrapper">
+                <div class="deletePreviewimageWrapper"> 
+                    <img class="deletePreviewImage" src="../img/delete.png"> 
+                </div>
+                <img class="previewImage" src="${reader.result}">
+            </div>`;
         });
         reader.readAsDataURL(file);
     });
-    
+
     preview.classList.add("visible");
 }
 
