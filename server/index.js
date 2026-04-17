@@ -6,7 +6,10 @@ const app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "../client")));
 
-app.use("/", require("./routes/pageRoutes"));  //Start seite
-app.use("/image", require("./routes/imageRoutes")); //Image upload seite
+// schickt HTML zurück → Browser zeigt eine Seite an
+app.use("/", require("./routes/pageRoutes"));
+
+// schickt JSON zurück → kein sichtbarer Seitenwechsel, nur Daten im Hintergrund
+app.use("/image", require("./routes/imageRoutes"));
 
 app.listen(3000, () => console.log("Server läuft auf Port 3000"));
