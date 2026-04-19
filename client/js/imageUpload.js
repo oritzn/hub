@@ -36,8 +36,10 @@ preview.addEventListener("mouseout", (event) => {
 preview.addEventListener("click", (event) => {
     if (event.target.classList.contains("deletePreviewImage")) {
         const wrapper = event.target.closest(".imagePreviewWrapper");
-        const src = wrapper.querySelector(".previewImage").src;
-        console.log(src);
+        const index = parseInt(wrapper.dataset.index);
+
+        wrapper.remove();
+        uploadedFiles.splice(index, 1);
     }
 });
 
@@ -45,13 +47,13 @@ function handleFiles(files) {
     uploadedFiles = Array.from(files);
     preview.innerHTML = "";
 
-    uploadedFiles.forEach(file => {
+    uploadedFiles.forEach((file, index) => {
         const reader = new FileReader();
-        
+
         reader.addEventListener("load", () => {
-            preview.innerHTML += `<div class="imagePreviewWrapper">
-                <div class="deletePreviewimageWrapper"> 
-                    <img class="deletePreviewImage" src="../img/delete.png"> 
+            preview.innerHTML += `<div class="imagePreviewWrapper" data-index="${index}">
+                <div class="deletePreviewimageWrapper">
+                    <img class="deletePreviewImage" src="../img/delete.png">
                 </div>
                 <img class="previewImage" src="${reader.result}">
             </div>`;
@@ -68,6 +70,9 @@ imageInput.addEventListener("change", function() {
 
 
 function sendData() {
+    preview.innerHTML = "";
+    uploadedFiles = "";
+
     if (uploadedFiles.length === 0) {
         console.log("Kein Bild ausgewählt!");
         return;
@@ -90,8 +95,4 @@ function sendData() {
 function clearPreview() {
     preview.innerHTML = "";
     uploadedFiles = "";
-}
-
-function removeImgFromUploadedFiles(img) {
-    //Bei remove aus preview wird das entsprechence bild aus dem uploadedFiles entfernt
 }
