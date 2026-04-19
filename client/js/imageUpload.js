@@ -21,6 +21,25 @@ dropZone.addEventListener("drop", (e) => {
     if (files.length > 0) handleFiles(files);
 });
 
+//Kreuz anzeigen
+preview.addEventListener("mouseover", (event) => {
+    const wrapper = event.target.closest(".imagePreviewWrapper");
+    if (wrapper) wrapper.querySelector(".deletePreviewImage").style.display = "block";
+});
+//Kreuz entfernen
+preview.addEventListener("mouseout", (event) => {
+    const wrapper = event.target.closest(".imagePreviewWrapper");
+    if (wrapper) wrapper.querySelector(".deletePreviewImage").style.display = "none";
+});
+
+//Bild löschen
+preview.addEventListener("click", (event) => {
+    if (event.target.classList.contains("deletePreviewImage")) {
+        const wrapper = event.target.closest(".imagePreviewWrapper");
+        const src = wrapper.querySelector(".previewImage").src;
+        console.log(src);
+    }
+});
 
 function handleFiles(files) {
     uploadedFiles = Array.from(files);
