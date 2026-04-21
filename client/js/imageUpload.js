@@ -1,5 +1,5 @@
 const imageInput = document.querySelector('#fileInput');
-const dropZone = document.querySelector('#drop-zone');
+const dropZone = document.querySelector('#dropZone');
 const preview = document.querySelector('#preview');
 let uploadedFiles = [];
 
