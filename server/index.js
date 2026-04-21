@@ -9,7 +9,7 @@ app.use(express.static(path.join(__dirname, "../client")));
 // schickt HTML zurück → Browser zeigt eine Seite an
 app.use("/", require("./routes/pageRoutes"));
 
-// schickt JSON zurück → kein sichtbarer Seitenwechsel, nur Daten im Hintergrund
+// kein sichtbarer Seitenwechsel, nur Daten im Hintergrund
 app.use("/image", require("./routes/imageRoutes"));
 
 app.listen(3000, () => console.log("Server läuft auf Port 3000"));

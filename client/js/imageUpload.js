@@ -64,20 +64,37 @@ function sendData() {
         return;
     }
 
-    const formData = new FormData();
-    uploadedFiles.forEach(file => {
-        formData.append("bilder", file);
-    });
+    const path = document.getElementById("pathInput").value;
 
-    fetch("/image/upload", {
+    fetch("/image/uploadPath", {
         method: "POST",
-        body: formData
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ path })
     })
         .then(res => res.json())
-        .then(response => console.log(response));
+        .then(response => {
+            if (!response.exists) {
+                alert("Pfad existiert nicht!");
+                return;
+            }
 
-    clearPreview()
-    alert("Image sent");
+            const formData = new FormData();
+            formData.append("path", path);
+            uploadedFiles.forEach(file => {
+                formData.append("bilder", file);
+            });
+
+            return fetch("/image/upload", {
+                method: "POST",
+                body: formData
+            })
+                .then(res => res.json())
+                .then(response => {
+                    console.log(response);
+                    clearPreview();
+                    alert("Image sent");
+                });
+        });
 }
 
 
