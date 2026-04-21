@@ -21,17 +21,6 @@ dropZone.addEventListener("drop", (e) => {
     if (files.length > 0) handleFiles(files);
 });
 
-//Kreuz anzeigen
-preview.addEventListener("mouseover", (event) => {
-    const wrapper = event.target.closest(".imagePreviewWrapper");
-    if (wrapper) wrapper.querySelector(".deletePreviewImage").style.display = "block";
-});
-//Kreuz entfernen
-preview.addEventListener("mouseout", (event) => {
-    const wrapper = event.target.closest(".imagePreviewWrapper");
-    if (wrapper) wrapper.querySelector(".deletePreviewImage").style.display = "none";
-});
-
 //Bild löschen
 preview.addEventListener("click", (event) => {
     if (event.target.classList.contains("deletePreviewImage")) {
@@ -70,9 +59,6 @@ imageInput.addEventListener("change", function() {
 
 
 function sendData() {
-    preview.innerHTML = "";
-    uploadedFiles = "";
-
     if (uploadedFiles.length === 0) {
         console.log("Kein Bild ausgewählt!");
         return;
@@ -89,6 +75,9 @@ function sendData() {
     })
         .then(res => res.json())
         .then(response => console.log(response));
+
+    clearPreview()
+    alert("Image sent");
 }
 
 
