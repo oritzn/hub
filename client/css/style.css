@@ -1,58 +1,66 @@
 body {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    width: 100vw;
-    height: 100vh;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
     padding: 0;
     margin: 0;
     font-family: sans-serif;
+    box-sizing: border-box;
 }
 
 #heading {
     margin: 0;
     font-size: 4rem;
-    height: 17%;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 2rem;
+    padding: 2rem 0;
 }
 
 #bodyContent {
     display: flex;
     justify-content: center;
-    height: 85%;
     width: 100%;
-    display: flex;
     gap: 4rem;
     flex-wrap: wrap;
+    padding: 0 2rem 2rem;
+    box-sizing: border-box;
 }
 
 .bodyContentItem {
     border: 3px solid grey;
     border-radius: 25px;
     width: 20%;
-    height: 40%;
+    min-width: 140px;
+    max-width: 280px;
+    aspect-ratio: 3 / 4;
+    display: flex;
+    flex-direction: column;
 }
+
 .bodyContentItem:hover {
     cursor: pointer;
 }
 
 .clickableCard {
     text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 .imgWrapper {
-    width: 100%;
-    height: 60%;
+    flex: 3;
     display: flex;
     justify-content: center;
     align-items: center;
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
     border-bottom: 3px solid grey;
+    overflow: hidden;
 }
 
 .bodyContentItemImage {
@@ -62,8 +70,7 @@ body {
 }
 
 .bodyContentItemText {
-    width: 100%;
-    height: 40%;
+    flex: 2;
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
     font-size: 2.5rem;
@@ -72,4 +79,26 @@ body {
     align-items: center;
     color: black;
     font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    #heading {
+        font-size: 2.5rem;
+        padding: 1.5rem 0;
+    }
+
+    #bodyContent {
+        gap: 1.5rem;
+        padding: 0 1rem 2rem;
+    }
+
+    .bodyContentItem {
+        width: 65%;
+        min-width: unset;
+        max-width: unset;
+    }
+
+    .bodyContentItemText {
+        font-size: 1.8rem;
+    }
 }

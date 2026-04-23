@@ -3,24 +3,26 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
+    width: 100%;
     padding: 0;
     margin: 0;
     background-color: #f5f5f5;
+    box-sizing: border-box;
 }
 
 #wrapper {
     width: 60%;
-    height: 100%;
+    max-width: 520px;
+    min-width: 280px;
     display: flex;
     align-items: center;
     flex-direction: column;
+    box-sizing: border-box;
 }
 
 .outerWrapper {
     width: 100%;
-    max-width: 520px;
 }
 
 #head {
@@ -38,28 +40,22 @@ body {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    height: 40%;
 }
-
 
 #pathWrapper {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 20%;
     margin-bottom: 1rem;
 }
 #pathInput {
     width: 90%;
     border-radius: 10px;
-    border: 2px solid ccc;
-    padding: 0;
+    border: 2px solid #ccc;
     padding: 0.5rem;
 }
 
-
 #dropZone {
-    height: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -88,7 +84,6 @@ body {
     font-size: 1.5rem;
 }
 
-
 #preview {
     display: none;
     flex-wrap: wrap;
@@ -102,7 +97,7 @@ body {
     height: 72px;
     border-radius: 8px;
     border: 1px solid #ddd;
-    position: relative;  /* ← Referenz für absolute Kinder */
+    position: relative;
 }
 .previewImage {
     width: 100%;
@@ -114,7 +109,7 @@ body {
     cursor: pointer;
 }
 .deletePreviewimageWrapper {
-    position: absolute;  /* ← schwebt über dem Bild */
+    position: absolute;
     width: 100%;
     height: 100%;
     display: flex;
@@ -129,10 +124,8 @@ body {
     height: 30%;
 }
 
-
-
 #buttonWrapper {
-    margin-top: 10%;
+    margin-top: 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -153,7 +146,6 @@ body {
     background-color: #333;
 }
 
-
 #homeButton {
     position: absolute;
     top: 0;
@@ -163,4 +155,23 @@ body {
 }
 #homeButton:hover {
     cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    #wrapper {
+        width: 100%;
+        padding: 0 1.2rem;
+    }
+
+    #heading {
+        font-size: 2rem;
+    }
+
+    #dropZone {
+        padding: 24px;
+    }
+
+    #dropLabel {
+        font-size: 1.1rem;
+    }
 }
