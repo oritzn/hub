@@ -32,6 +32,13 @@ preview.addEventListener("click", (event) => {
     }
 });
 
+async function loadPath() {
+  const response = await fetch('/image/path');
+  const data = await response.json();
+  
+  document.getElementById("pathInput").value = data.path;
+}
+
 function handleFiles(files) {
     uploadedFiles = Array.from(files);
     preview.innerHTML = "";
