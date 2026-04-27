@@ -42,19 +42,29 @@ async function loadPath() {
 function handleFiles(files) {
     uploadedFiles = Array.from(files);
     preview.innerHTML = "";
+    let count = 1;
 
     uploadedFiles.forEach((file, index) => {
-        const reader = new FileReader();
+        const url = URL.createObjectURL(file);
+        const wrapper = document.createElement("div");
 
-        reader.addEventListener("load", () => {
-            preview.innerHTML += `<div class="imagePreviewWrapper" data-index="${index}">
-                <div class="deletePreviewimageWrapper">
-                    <img class="deletePreviewImage" src="../img/delete.png">
-                </div>
-                <img class="previewImage" src="${reader.result}">
-            </div>`;
-        });
-        reader.readAsDataURL(file);
+        wrapper.className = "imagePreviewWrapper";
+        wrapper.dataset.index = index;
+
+        wrapper.innerHTML = `
+            <div class="deletePreviewimageWrapper">
+                <img class="deletePreviewImage" src="../img/delete.png">
+            </div>
+            <img class="previewImage" src="${url}">
+        `;
+        
+        // Cleanup wenn Bild entladen wird
+        wrapper.querySelector(".previewImage").onload = () => {
+            // optional: URL.revokeObjectURL(url) wenn du es nicht mehr brauchst
+        };
+
+        preview.appendChild(wrapper);
+        count++;
     });
 
     preview.classList.add("visible");
@@ -66,7 +76,9 @@ imageInput.addEventListener("change", function() {
 
 
 function sendData() {
-    if (uploadedFiles.length === 0) {
+    const lengthUploadedFiles = uploadedFiles.length;
+
+    if (lengthUploadedFiles === 0) {
         console.log("Kein Bild ausgewählt!");
         return;
     }
@@ -99,7 +111,7 @@ function sendData() {
                 .then(response => {
                     console.log(response);
                     clearPreview();
-                    alert("Image sent");
+                    alert(response.count + " Images sent");
                 });
         });
 }

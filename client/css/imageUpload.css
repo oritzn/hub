@@ -88,6 +88,9 @@ body {
     display: none;
     flex-wrap: wrap;
     gap: 6px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10%;
 }
 #preview.visible {
     display: flex;
